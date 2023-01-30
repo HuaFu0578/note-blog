@@ -1,0 +1,25 @@
+{
+  "name": "note-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vitepress dev --port=5175",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vitepress": "1.0.0-alpha.43",
+    "vue": "^3.2.45"
+  },
+  "pnpm": {
+  "peerDependencyRules": {
+    "ignoreMissing": [
+      "@algolia/client-search"
+    ]
+  }
+}
+}
