@@ -1,6 +1,6 @@
 {
   "name": "note-blog",
-  "version": "1.0.2-0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview",
     "build": "pnpm docs:build",
-    "deploy": "pnpm build && npm version ${1:-patch}"
+    "pub": "sh ./scripts/deploy.sh"
   },
   "keywords": [],
   "author": "",
