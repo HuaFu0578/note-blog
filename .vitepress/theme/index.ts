@@ -1,11 +1,13 @@
-import { Theme } from "vitepress";
+import type { Theme } from "vitepress";
 import DefaultTheme from "vitepress/theme";
+
+import theme from "@/theme";
 
 export default {
   ...DefaultTheme,
+  ...theme,
   enhanceApp(ctx) {
     DefaultTheme.enhanceApp(ctx);
-    // 注册自定义全局组件
-    // ctx.app.component("MYGlobalComponent", TheWelcome);
+    theme?.enhanceApp?.(ctx);
   },
 } as Theme;

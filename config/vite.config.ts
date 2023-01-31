@@ -1,5 +1,6 @@
-import { defineConfig } from 'vite';
-import { SearchPlugin } from 'vitepress-plugin-search';
+import { fileURLToPath } from "node:url";
+import { defineConfig } from "vite";
+import { SearchPlugin } from "vitepress-plugin-search";
 
 export default defineConfig({
   plugins: [
@@ -9,5 +10,9 @@ export default defineConfig({
       placeholder: "搜索文档",
     }),
   ],
-},
-)
+  resolve: {
+    alias: {
+      "@": fileURLToPath(new URL("./", import.meta.url)),
+    },
+  },
+});

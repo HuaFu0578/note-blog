@@ -1,10 +1,9 @@
-import { defineConfigWithTheme } from 'vitepress';
-import { DefaultTheme } from 'vitepress/theme';
+import type { DefaultTheme } from "vitepress/theme";
 
-import nav from './nav';
-import sidebar from './sidebar';
+import nav from "./nav";
+import sidebar from "./sidebar";
 
-export default defineConfigWithTheme<DefaultTheme.Config>({
+export default {
   themeConfig: {
     siteTitle: "Danker 学习笔记",
     lastUpdatedText: "最近更新时间",
@@ -23,4 +22,4 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
       { icon: "github", link: "https://github.com/vuejs/vitepress" },
     ],
   },
-});
+} as DefaultTheme.Config;

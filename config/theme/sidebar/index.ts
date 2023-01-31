@@ -1,8 +1,10 @@
-import { DefaultTheme } from "vitepress";
+import type { DefaultTheme } from "vitepress";
 import knowledge from "./knowledge";
 import life from "./life";
 
 export default {
+  "/knowledge/": knowledge,
+  "/life/": life,
   "/": [
     {
       text: "Guide1",
@@ -12,6 +14,4 @@ export default {
       ],
     },
   ],
-  '/knowledge/':knowledge,
-  '/life/':life,
 } as DefaultTheme.Sidebar;
