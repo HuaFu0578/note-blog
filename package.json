@@ -12,14 +12,18 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "flexsearch": "^0.7.31",
+    "markdown-it": "^13.0.1",
+    "vite": "^4.0.4",
     "vitepress": "1.0.0-alpha.43",
+    "vitepress-plugin-search": "1.0.4-alpha.19",
     "vue": "^3.2.45"
   },
   "pnpm": {
-  "peerDependencyRules": {
-    "ignoreMissing": [
-      "@algolia/client-search"
-    ]
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@algolia/client-search"
+      ]
+    }
   }
-}
 }
