@@ -11,7 +11,7 @@ export default [
       },
       {
         text: "数据结构和算法",
-        link: "/knowledge/frontend/数据结构和算法",
+        link: "/knowledge/frontend/数据结构与算法",
       },
       {
         text: "网络相关",
