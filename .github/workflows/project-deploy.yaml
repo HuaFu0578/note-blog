@@ -21,8 +21,6 @@ jobs:
           node-version: "16.x"
           cache: "pnpm"
       - name: 执行远程脚本命令
-        env:
-          gitURL: git@github.com
         uses: appleboy/ssh-action@v0.1.6
         with:
           host: ${{ secrets.HOST }}
@@ -36,7 +34,7 @@ jobs:
             mkdir -p $absolute_path &&
             echo "项目完整路径：$absolute_path" &&
             cd $absolute_path &&
-            git_repo=$gitURL:${{ github.repository }} &&
+            git_repo=git@github.com:${{ github.repository }} &&
             echo "git 仓库地址：$git_repo" &&
             git init -q &&
             remote_origin=$(git remote -v | grep origin) &&
