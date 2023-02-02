@@ -34,9 +34,10 @@ jobs:
             mkdir -p $absolute_path &&
             echo "项目完整路径：$absolute_path" &&
             cd $absolute_path &&
-            git_repo=git@github.com:${{ github.repository }} &&
+            git_repo=git@github.com:${{ github.repository }}.git &&
             echo "git 仓库地址：$git_repo" &&
             git init -q &&
+            echo "git init 完成" &&
             remote_origin=$(git remote -v | grep origin) &&
             echo "remote_origin:$remote_origin" &&
             if [ ! "$remote_origin" ]; then git remote add origin $git_repo; fi &&
