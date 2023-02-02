@@ -37,12 +37,12 @@ jobs:
             echo "项目完整路径：$absolute_path" &&
             cd $absolute_path &&
             git_repo=$gitURL:${{ github.repository }} &&
-            git init &&
+            git init -q &&
             remote_origin=$(git remote -v | grep origin) &&
             if [ "$remote_origin" ]; then git remote add origin $git_repo; fi &&
             git pull origin master &&
             pnpm docs:build &&
-            echo "项目拉取完成" &&
+            echo "项目拉取并打包完成" &&
             deploy_exist=$(node -p "require('./package.json')?.scripts?.deploy ??''") &&
             if [ "$deploy_exist" ]; then pnpm run deploy; fi &&
             cd $origin_pwd
