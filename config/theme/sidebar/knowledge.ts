@@ -10,7 +10,7 @@ export default [
         link: "/knowledge/frontend/设计模式",
       },
       {
-        text: "数据结构和算法",
+        text: "数据结构与算法",
         link: "/knowledge/frontend/数据结构与算法",
       },
       {
