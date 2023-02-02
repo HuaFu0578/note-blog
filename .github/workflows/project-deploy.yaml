@@ -41,7 +41,9 @@ jobs:
             remote_origin=$(git remote -v | grep origin) &&
             if [ "$remote_origin" ]; then git remote add origin $git_repo &&
             git pull origin master &&
+            pnpm docs:build &&
+            echo "项目拉取完成" &&
             deploy_exist=$(node -p "require('./package.json')?.scripts?.deploy ??''") &&
-            if [ "$deploy_exist" ]; then yarn deploy; fi &&
+            if [ "$deploy_exist" ]; then pnpm run deploy; fi &&
             cd $origin_pwd
       - run: echo "项目部署完成！"
