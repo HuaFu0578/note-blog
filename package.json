@@ -3,6 +3,7 @@
   "version": "1.0.3",
   "description": "",
   "main": "index.js",
+  "private": "true",
   "scripts": {
     "docs:dev": "vitepress dev --port=5175",
     "docs:build": "vitepress build",
@@ -10,9 +11,17 @@
     "build": "pnpm docs:build",
     "pub": "sh ./scripts/deploy.sh"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "笔记",
+    "学习",
+    "前端"
+  ],
+  "author": "Danker",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HuaFu0578/note-blog.git"
+  },
   "devDependencies": {
     "@types/node": "^18.11.18",
     "@vue/tsconfig": "^0.1.3",
