@@ -10,6 +10,8 @@ on:
 jobs:
   Build-Deploy:
     runs-on: ubuntu-latest
+    env:
+      gitURL: git@github.com
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2.2.4
@@ -20,25 +22,6 @@ jobs:
         with:
           node-version: "16.x"
           cache: "pnpm"
-      - name: 安装依赖
-        run: pnpm install
-      - run: pnpm build
-      - name: 检查远程部署路径是否存在
-        uses: appleboy/ssh-action@v0.1.6
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER_NAME }}
-          password: ${{ secrets.PASSWORD }}
-          script: mkdir -p ~/projects/.temp
-      - name: 复制文件到远程
-        uses: appleboy/scp-action@v0.1.3
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER_NAME }}
-          password: ${{ secrets.PASSWORD }}
-          rm: true
-          source: "dist/*,package.json"
-          target: "~/projects/.temp"
       - name: 执行远程脚本命令
         uses: appleboy/ssh-action@v0.1.6
         with:
@@ -50,16 +33,15 @@ jobs:
             rep_url=${{ github.repositoryUrl }} &&
             pos_path=$(node -p "\`$rep_url\`.match(/\/\/[^/]*(\/.*)(\.[^.]*?)$/)?.[1]") &&
             absolute_path=$base_path/$pos_path &&
-            echo "项目完整路径：$absolute_path" &&
-            cd $base_path/.temp &&
             mkdir -p $absolute_path &&
-            cp -r $base_path/.temp/* $absolute_path &&
-            rm -rf $base_path/.temp &&
+            echo "项目完整路径：$absolute_path" &&
             cd $absolute_path &&
+            git_repo=$gitURL:${{ github.repository }} &&
+            git init &&
+            remote_origin=$(git remote -v | grep origin) &&
+            if [ "$remote_origin" ]; then git remote add origin $git_repo &&
+            git pull origin master &&
             deploy_exist=$(node -p "require('./package.json')?.scripts?.deploy ??''") &&
             if [ "$deploy_exist" ]; then yarn deploy; fi &&
-            git init &&
-            git remote add origin $rep_url &&
-            git pull origin master &&
             cd $origin_pwd
       - run: echo "项目部署完成！"
