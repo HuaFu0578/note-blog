@@ -38,9 +38,9 @@ jobs:
             echo "git 仓库地址：$git_repo" &&
             git init -q &&
             remote_origin=$(git remote -v | grep origin) &&
-            echo "remote_origin:$remote_origin"
+            echo "remote_origin:$remote_origin" &&
             if [ ! "$remote_origin" ]; then git remote add origin $git_repo; fi &&
-            echo "这里"
+            echo "这里" &&
             git pull origin master &&
             pnpm docs:build &&
             echo "项目拉取并打包完成" &&
