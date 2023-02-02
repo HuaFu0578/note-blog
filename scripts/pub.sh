@@ -10,11 +10,13 @@ isStandardTag=$(node -p "\`$standard_tags\`?.split(/\s+\|\s+/)?.includes?.(\`$ve
 
 if [ "$isStandardTag" != 'true' ]; then
 
-    version_tag="prerelease --preid=$version_tag"
+    npm version prerelease --preid="$version_tag"
+
+else
+
+    npm version "$version_tag"
 
 fi
-
-npm version "$version_tag"
 
 version=$(node -p "require('./package.json')?.version ??''")
 
