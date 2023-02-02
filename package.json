@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "private": "true",
+  "type": "module",
   "scripts": {
     "docs:dev": "vitepress dev --port=5175",
     "docs:build": "vitepress build",
@@ -20,7 +21,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/HuaFu0578/note-blog.git"
+    "url": "git+https://github.com/HuaFu0578/note-blog.git"
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
@@ -28,9 +29,9 @@
     "flexsearch": "^0.7.31",
     "markdown-it": "^13.0.1",
     "vite": "^4.0.4",
-    "vitepress": "1.0.0-alpha.43",
+    "vitepress": "1.0.0-alpha.45",
     "vitepress-plugin-search": "1.0.4-alpha.19",
-    "vue": "^3.2.45"
+    "vue": "^3.2.46"
   },
   "pnpm": {
     "peerDependencyRules": {
