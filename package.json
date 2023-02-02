@@ -6,11 +6,12 @@
   "private": "true",
   "type": "module",
   "scripts": {
+    "dev": "pnpm docs:dev",
     "docs:dev": "vitepress dev --port=5175",
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview",
     "build": "pnpm docs:build",
-    "pub": "sh ./scripts/deploy.sh"
+    "pub": "source ./scripts/pub.sh"
   },
   "keywords": [
     "笔记",
