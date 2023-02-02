@@ -3,7 +3,7 @@ import type { DefaultTheme } from "vitepress";
 export default [
   {
     text: "前端",
-    collapsible: true,
+    collapsed: false,
     items: [
       {
         text: "设计模式",
@@ -57,7 +57,6 @@ export default [
   },
   {
     text: "后端",
-    collapsible: true,
     collapsed: true,
     items: [
       {

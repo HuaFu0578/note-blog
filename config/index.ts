@@ -11,6 +11,6 @@ export default defineConfig({
   outDir: "./dist/notes",
   srcDir: "./docs",
   vite: viteConfig as UserConfig,
-  ...theme,
+  themeConfig: theme,
   markdown: markdown,
 });

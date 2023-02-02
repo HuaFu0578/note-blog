@@ -3,7 +3,7 @@ import type { DefaultTheme } from "vitepress";
 export default [
   {
     text: "前端面试相关",
-    collapsible: true,
+    collapsed: false,
     items: [
       {
         text: "滴滴面经",

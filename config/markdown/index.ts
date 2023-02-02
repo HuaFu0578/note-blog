@@ -1,4 +1,4 @@
-import { MarkdownOptions } from "vitepress";
+import type { MarkdownOptions } from "vitepress";
 
 export default {
   theme: "material-theme-palenight",
