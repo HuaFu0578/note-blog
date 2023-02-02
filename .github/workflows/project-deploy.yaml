@@ -58,5 +58,8 @@ jobs:
             cd $absolute_path &&
             deploy_exist=$(node -p "require('./package.json')?.scripts?.deploy ??''") &&
             if [ "$deploy_exist" ]; then yarn deploy; fi &&
+            git init &&
+            git remote add origin $rep_url &&
+            git pull origin master &&
             cd $origin_pwd
       - run: echo "项目部署完成！"
