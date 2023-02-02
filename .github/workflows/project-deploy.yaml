@@ -10,8 +10,6 @@ on:
 jobs:
   Build-Deploy:
     runs-on: ubuntu-latest
-    env:
-      gitURL: git@github.com
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2.2.4
@@ -23,6 +21,8 @@ jobs:
           node-version: "16.x"
           cache: "pnpm"
       - name: 执行远程脚本命令
+        env:
+          gitURL: git@github.com
         uses: appleboy/ssh-action@v0.1.6
         with:
           host: ${{ secrets.HOST }}
