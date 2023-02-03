@@ -7,13 +7,5 @@ export default {
   "/knowledge/interview": interview,
   "/knowledge/": knowledge,
   "/life/": life,
-  "/": [
-    {
-      text: "Guide1",
-      items: [
-        { text: "Introduction", link: "/introduction" },
-        { text: "Getting Started", link: "/getting-started" },
-      ],
-    },
-  ],
+  "/": [],
 } as DefaultTheme.Sidebar;

@@ -7,7 +7,7 @@ import type { DefaultTheme } from "vitepress/theme";
 const repositoryUrl = getRepositoryUrl(process.cwd());
 
 export default {
-  siteTitle: "Danker 学习笔记",
+  siteTitle: "Danker 笔记",
   lastUpdatedText: "最近更新时间",
   outline: {
     label: "文章目录",
