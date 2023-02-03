@@ -20,6 +20,9 @@ jobs:
         with:
           node-version: "16.x"
           cache: "pnpm"
+      - name: 拉取最新代码
+        run: git log --oneline
+      - run: echo "hhahah可以拉取代码"
       - name: 安装依赖
         run: pnpm install
       - run: pnpm build
