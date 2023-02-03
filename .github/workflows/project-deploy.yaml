@@ -11,18 +11,21 @@ jobs:
   Build-Deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2.2.4
+      - name: 拉取远程代码
+        uses: actions/checkout@v3
         with:
-          version: 7.21.0
+          fetch-depth: "0"
+      - name: 配置 pnpm 环境
+        uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 7.26.2
       - name: 设置 node 配置
         uses: actions/setup-node@v3
         with:
           node-version: "16.x"
           cache: "pnpm"
-      - name: 拉取最新代码
-        run: git log --oneline
-      - run: echo "hhahah可以拉取代码"
+      - name: 测试试试
+        run: git branch && git log
       - name: 安装依赖
         run: pnpm install
       - run: pnpm build
