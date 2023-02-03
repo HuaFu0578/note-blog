@@ -25,4 +25,8 @@ export default {
     text: "在 GitHub 页面编辑此页",
   },
   socialLinks: [{ icon: "github", link: repositoryUrl }],
+  footer: {
+    message: "Danker 个人笔记站点",
+    copyright: `Copyright © ${new Date().getFullYear()}-present Danker`,
+  },
 } as DefaultTheme.Config;
