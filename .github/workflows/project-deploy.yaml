@@ -20,6 +20,27 @@ jobs:
         with:
           node-version: "16.x"
           cache: "pnpm"
+      - name: 安装依赖
+        run: pnpm install
+      - run: pnpm build
+      - name: 检查远程部署路径是否存在
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER_NAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: temp=~/projects/.temp &&
+            rm -rf $temp &&
+            mkdir -p $temp
+      - name: 复制文件到远程
+        uses: appleboy/scp-action@v0.1.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER_NAME }}
+          password: ${{ secrets.PASSWORD }}
+          rm: true
+          source: "dist/*"
+          target: "~/projects/.temp"
       - name: 执行远程脚本命令
         uses: appleboy/ssh-action@v0.1.6
         with:
@@ -28,23 +49,30 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: origin_pwd=$(pwd) &&
             base_path=~/projects &&
+            temp_dir=$base_path/.temp &&
             rep_url=${{ github.repositoryUrl }} &&
             pos_path=$(node -p "\`$rep_url\`.match(/\/\/[^/]*(\/.*)(\.[^.]*?)$/)?.[1]") &&
             absolute_path=$base_path/$pos_path &&
             mkdir -p $absolute_path &&
             echo "项目完整路径：$absolute_path" &&
+
+            cd $temp_dir &&
+            mkdir -p $absolute_path &&
+            cp -r $temp_dir/* $absolute_path &&
+            rm -rf $temp_dir &&
             cd $absolute_path &&
+
             git_repo=git@github.com:${{ github.repository }}.git &&
             echo "git 仓库地址：$git_repo" &&
             git init -q &&
+            git checkout HEAD . &&
             remote_origin=$(git remote -v) &&
             is_remote_origin=$(node -p "\`$remote_origin\`?.split(/\s+/)?.includes('origin')") &&
             echo "remote_origin:$remote_origin" &&
             if [ "$is_remote_origin" != 'true' ]; then git remote add origin $git_repo; fi &&
             git pull origin master &&
-            pnpm install &&
-            pnpm docs:build &&
             echo "项目拉取并打包完成" &&
+
             deploy_exist=$(node -p "require('./package.json')?.scripts?.deploy ??''") &&
             if [ "$deploy_exist" ]; then pnpm run deploy; fi &&
             cd $origin_pwd
