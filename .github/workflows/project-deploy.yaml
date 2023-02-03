@@ -42,7 +42,6 @@ jobs:
             echo "remote_origin:$remote_origin" &&
             if [ "$is_remote_origin" != 'true' ]; then git remote add origin $git_repo; fi &&
             git pull origin master &&
-            npm i -g pnpm &&
             pnpm install &&
             pnpm docs:build &&
             echo "项目拉取并打包完成" &&
