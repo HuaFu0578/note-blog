@@ -14,14 +14,20 @@
         "selector": "",
         "defaultValue": "Documentation"
       },
-      "lvl1": ".content h1",
-      "lvl2": ".content h2",
-      "lvl3": ".content h3",
-      "lvl4": ".content h4",
-      "lvl5": ".content h5"
+      "lvl1": ".content .main h2",
+      "lvl2": ".content .main h3",
+      "lvl3": ".content .main h4",
+      "lvl4": ".content .main h5",
+      "lvl5": ".content .main h6",
+      "text": ".content .main p,.content .main li"
     }
   },
+  "stop_urls": [
+    "https://hfullest.com/notes/assets/*",
+    "https://hfullest.com/notes/404.html",
+    "https://hfullest.com/notes/hashmap.json"
+  ],
   "selectors_exclude": [".VPDocFooter .prev-next"],
   "js_render": true,
-  "use_anchors": true
+  "only_content_level": true
 }
