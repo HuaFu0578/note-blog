@@ -29,4 +29,13 @@ export default {
     message: "Danker 个人笔记站点",
     copyright: `Copyright © ${new Date().getFullYear()}-present Danker`,
   },
+  algolia: {
+    appId: "DN0SK7UQY1",
+    apiKey: "f62888ddc77684b696046411873f94f2",
+    indexName: "danker_notes_blog_index",
+    placeholder: "请输入关键词",
+    translations: {
+      button: { buttonText: "搜索" },
+    },
+  },
 } as DefaultTheme.Config;
