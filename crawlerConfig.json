@@ -15,6 +15,9 @@
     "lvl5": ".content h5",
     "content": ".content p, .content li"
   },
+  "indexHeadings": true,
+  "aggregateContent": true,
+  "recordVersion": "v3",
   "selectors_exclude": [
     "aside",
     ".page-footer",
