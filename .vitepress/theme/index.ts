@@ -1,7 +1,7 @@
 import type { Theme } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 
-import theme from "@/theme";
+import theme from "../../theme";
 
 export default {
   ...DefaultTheme,
