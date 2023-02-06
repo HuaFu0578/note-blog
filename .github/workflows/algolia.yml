@@ -1,8 +1,8 @@
 name: algolia
 on:
   push:
-    branches:
-      - master
+    tags: ["v*"]
+
 jobs:
   algolia:
     runs-on: ubuntu-latest
