@@ -1,28 +1,28 @@
 {
+  "$comment": "https://docsearch.algolia.com/docs/legacy/config-file",
   "index_name": "danker_notes_blog_index",
-  "start_urls": ["https://hfullest.com/notes/"],
+  "start_urls": [
+    "https://hfullest.com/notes/",
+    { "url": "https://hfullest.com/notes/knowledge/", "selectors_key": "知识" },
+    { "url": "https://hfullest.com/notes/life/", "selectors_key": "生活" }
+  ],
   "rateLimit": 8,
   "maxDepth": 10,
   "selectors": {
-    "lvl0": {
-      "selector": "",
-      "defaultValue": "Documentation"
-    },
-    "lvl1": ".content h1",
-    "lvl2": ".content h2",
-    "lvl3": ".content h3",
-    "lvl4": ".content h4",
-    "lvl5": ".content h5",
-    "content": ".content p, .content li"
+    "default": {
+      "lvl0": {
+        "selector": "",
+        "defaultValue": "Documentation"
+      },
+      "lvl1": ".content h1",
+      "lvl2": ".content h2",
+      "lvl3": ".content h3",
+      "lvl4": ".content h4",
+      "lvl5": ".content h5",
+      "text": ".content p, .content li"
+    }
   },
-  "indexHeadings": true,
-  "aggregateContent": true,
-  "recordVersion": "v3",
-  "selectors_exclude": [
-    "aside",
-    ".page-footer",
-    ".next-and-prev-link",
-    ".table-of-contents"
-  ],
-  "js_render": true
+  "selectors_exclude": [".VPDocFooter .prev-next"],
+  "js_render": true,
+  "use_anchors": true
 }
