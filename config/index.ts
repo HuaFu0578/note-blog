@@ -2,6 +2,7 @@ import { defineConfig, type UserConfig } from "vitepress";
 import viteConfig from "./vite.config";
 import theme from "./theme";
 import markdown from "./markdown";
+import headInjection from "../headInjection";
 export default defineConfig({
   base: "/notes",
   title: "Danker 笔记",
@@ -11,6 +12,7 @@ export default defineConfig({
   outDir: "./dist/notes",
   srcDir: "./docs",
   vite: viteConfig as UserConfig,
+  head: headInjection,
   themeConfig: theme,
   markdown: markdown,
 });
