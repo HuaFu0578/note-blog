@@ -1,0 +1,227 @@
+diff --git a/.history/dist/client/theme-default/components/VPAlgoliaSearchBox_20230206172012.vue b/.history/dist/client/theme-default/components/VPAlgoliaSearchBox_20230206172012.vue
+new file mode 100644
+index 0000000000000000000000000000000000000000..00e90b159dc301b3f224a9a1fce315914e03e78b
+--- /dev/null
++++ b/.history/dist/client/theme-default/components/VPAlgoliaSearchBox_20230206172012.vue
+@@ -0,0 +1,101 @@
++<script setup lang="ts">
++import type { DefaultTheme } from 'vitepress/theme'
++import docsearch from '@docsearch/js'
++import { onMounted, watch } from 'vue'
++import { useRouter, useRoute } from 'vitepress'
++import { useData } from '../composables/data.js'
++
++const props = defineProps<{
++  algolia: DefaultTheme.AlgoliaSearchOptions
++}>()
++
++const router = useRouter()
++const route = useRoute()
++const { site, localeIndex, lang } = useData()
++
++const docsearch$ = docsearch.default ?? docsearch
++type DocSearchProps = Parameters<typeof docsearch$>[0]
++
++onMounted(update)
++watch(localeIndex, update)
++
++function update() {
++  const options = {
++    ...props.algolia,
++    ...props.algolia.locales?.[localeIndex.value]
++  }
++  const rawFacetFilters = options.searchParameters?.facetFilters ?? []
++  const facetFilters = [
++    ...(Array.isArray(rawFacetFilters)
++      ? rawFacetFilters
++      : [rawFacetFilters]
++    ).filter((f) => !f.startsWith('lang:')),
++    `lang:${lang.value}`
++  ]
++  initialize({
++    ...options,
++    searchParameters: {
++      ...options.searchParameters,
++      facetFilters
++    }
++  })
++}
++
++function initialize(userOptions: DefaultTheme.AlgoliaSearchOptions) {
++  const options = Object.assign<{}, {}, DocSearchProps>({}, userOptions, {
++    container: '#docsearch',
++
++    navigator: {
++      navigate({ itemUrl }) {
++        const { pathname: hitPathname } = new URL(
++          window.location.origin + itemUrl
++        )
++
++        // router doesn't handle same-page navigation so we use the native
++        // browser location API for anchor navigation
++        if (route.path === hitPathname) {
++          window.location.assign(window.location.origin + itemUrl)
++        } else {
++          router.go(itemUrl)
++        }
++      }
++    },
++
++    transformItems(items) {
++      return items.map((item) => {
++        return Object.assign({}, item, {
++          url: getRelativePath(item.url)
++        })
++      })
++    },
++
++    // @ts-expect-error vue-tsc thinks this should return Vue JSX but it returns the required React one
++    hitComponent({ hit, children }) {
++      return {
++        __v: null,
++        type: 'a',
++        ref: undefined,
++        constructor: undefined,
++        key: undefined,
++        props: { href: hit.url, children }
++      }
++    }
++  })
++
++  docsearch$(options)
++}
++
++function getRelativePath(absoluteUrl: string) {
++  const { pathname, hash } = new URL(absoluteUrl)
++  return (
++    pathname.replace(
++      /\.html$/,
++      site.value.cleanUrls ? '' : '.html'
++    ) + hash
++  )
++}
++</script>
++
++<template>
++  <div id="docsearch" />
++</template>
+diff --git a/.history/dist/client/theme-default/components/VPAlgoliaSearchBox_20230206172101.vue b/.history/dist/client/theme-default/components/VPAlgoliaSearchBox_20230206172101.vue
+new file mode 100644
+index 0000000000000000000000000000000000000000..d6bab7c6ea380441798f63b55454f050a96b528c
+--- /dev/null
++++ b/.history/dist/client/theme-default/components/VPAlgoliaSearchBox_20230206172101.vue
+@@ -0,0 +1,101 @@
++<script setup lang="ts">
++import type { DefaultTheme } from 'vitepress/theme'
++import docsearch from '@docsearch/js'
++import { onMounted, watch } from 'vue'
++import { useRouter, useRoute } from 'vitepress'
++import { useData } from '../composables/data.js'
++
++const props = defineProps<{
++  algolia: DefaultTheme.AlgoliaSearchOptions
++}>()
++
++const router = useRouter()
++const route = useRoute()
++const { site, localeIndex, lang } = useData()
++
++const docsearch$ = docsearch.default ?? docsearch
++type DocSearchProps = Parameters<typeof docsearch$>[0]
++
++onMounted(update)
++watch(localeIndex, update)
++
++function update() {
++  const options = {
++    ...props.algolia,
++    ...props.algolia.locales?.[localeIndex.value]
++  }
++  const rawFacetFilters = options.searchParameters?.facetFilters ?? []
++  const facetFilters = [
++    ...(Array.isArray(rawFacetFilters)
++      ? rawFacetFilters
++      : [rawFacetFilters]
++    ).filter((f) => !f.startsWith('lang:')),
++    // `lang:${lang.value}`
++  ]
++  initialize({
++    ...options,
++    searchParameters: {
++      ...options.searchParameters,
++      facetFilters
++    }
++  })
++}
++
++function initialize(userOptions: DefaultTheme.AlgoliaSearchOptions) {
++  const options = Object.assign<{}, {}, DocSearchProps>({}, userOptions, {
++    container: '#docsearch',
++
++    navigator: {
++      navigate({ itemUrl }) {
++        const { pathname: hitPathname } = new URL(
++          window.location.origin + itemUrl
++        )
++
++        // router doesn't handle same-page navigation so we use the native
++        // browser location API for anchor navigation
++        if (route.path === hitPathname) {
++          window.location.assign(window.location.origin + itemUrl)
++        } else {
++          router.go(itemUrl)
++        }
++      }
++    },
++
++    transformItems(items) {
++      return items.map((item) => {
++        return Object.assign({}, item, {
++          url: getRelativePath(item.url)
++        })
++      })
++    },
++
++    // @ts-expect-error vue-tsc thinks this should return Vue JSX but it returns the required React one
++    hitComponent({ hit, children }) {
++      return {
++        __v: null,
++        type: 'a',
++        ref: undefined,
++        constructor: undefined,
++        key: undefined,
++        props: { href: hit.url, children }
++      }
++    }
++  })
++
++  docsearch$(options)
++}
++
++function getRelativePath(absoluteUrl: string) {
++  const { pathname, hash } = new URL(absoluteUrl)
++  return (
++    pathname.replace(
++      /\.html$/,
++      site.value.cleanUrls ? '' : '.html'
++    ) + hash
++  )
++}
++</script>
++
++<template>
++  <div id="docsearch" />
++</template>
+diff --git a/dist/client/theme-default/components/VPAlgoliaSearchBox.vue b/dist/client/theme-default/components/VPAlgoliaSearchBox.vue
+index 00e90b159dc301b3f224a9a1fce315914e03e78b..d6bab7c6ea380441798f63b55454f050a96b528c 100644
+--- a/dist/client/theme-default/components/VPAlgoliaSearchBox.vue
++++ b/dist/client/theme-default/components/VPAlgoliaSearchBox.vue
+@@ -30,7 +30,7 @@ function update() {
+       ? rawFacetFilters
+       : [rawFacetFilters]
+     ).filter((f) => !f.startsWith('lang:')),
+-    `lang:${lang.value}`
++    // `lang:${lang.value}`
+   ]
+   initialize({
+     ...options,

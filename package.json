@@ -39,6 +39,9 @@
       "ignoreMissing": [
         "@algolia/client-search"
       ]
+    },
+    "patchedDependencies": {
+      "vitepress@1.0.0-alpha.45": "patches/vitepress@1.0.0-alpha.45.patch"
     }
   }
 }
