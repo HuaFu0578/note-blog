@@ -4,6 +4,7 @@ import theme from "./theme";
 import markdown from "./markdown";
 import headInjection from "../headInjection";
 export default defineConfig({
+  lang: "zh-CN",
   base: "/notes",
   title: "Danker 笔记",
   description: "学习笔记整理与记录",
