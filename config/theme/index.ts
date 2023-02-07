@@ -34,6 +34,7 @@ export default {
     apiKey: "f62888ddc77684b696046411873f94f2",
     indexName: "danker_notes_blog_index",
     placeholder: "请输入关键词",
+    searchParameters: { hitsPerPage: 100 },
     translations: {
       button: { buttonText: "搜索" },
     },
