@@ -26,7 +26,10 @@
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
-    "@vue/tsconfig": "^0.1.3",
+    "@vue/tsconfig": "^0.1.3"
+  },
+  "dependencies": {
+    "@docsearch/js": "^3.3.3",
     "flexsearch": "^0.7.31",
     "markdown-it": "^13.0.1",
     "vite": "^4.0.4",
@@ -41,7 +44,8 @@
       ]
     },
     "patchedDependencies": {
-      "vitepress@1.0.0-alpha.45": "patches/vitepress@1.0.0-alpha.45.patch"
+      "vitepress@1.0.0-alpha.45": "patches/vitepress@1.0.0-alpha.45.patch",
+      "@docsearch/js@3.3.3": "patches/@docsearch__js@3.3.3.patch"
     }
   }
 }
