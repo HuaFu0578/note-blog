@@ -3,8 +3,14 @@
   "index_name": "danker_notes_blog_index",
   "start_urls": [
     "https://hfullest.com/notes/",
-    { "url": "https://hfullest.com/notes/knowledge/", "selectors_key": "知识" },
-    { "url": "https://hfullest.com/notes/life/", "selectors_key": "生活" }
+    {
+      "url": "https://hfullest.com/notes/knowledge/",
+      "selectors_key": "知识"
+    },
+    {
+      "url": "https://hfullest.com/notes/life/",
+      "selectors_key": "生活"
+    }
   ],
   "rateLimit": 8,
   "maxDepth": 10,
@@ -27,7 +33,8 @@
     "https://hfullest.com/notes/404.html",
     "https://hfullest.com/notes/hashmap.json"
   ],
-  "selectors_exclude": [".VPDocFooter .prev-next"],
-  "js_render": true,
-  "only_content_level": true
+  "selectors_exclude": [
+    ".VPDocFooter .prev-next"
+  ],
+  "js_render": true
 }
