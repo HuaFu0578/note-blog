@@ -1,0 +1,37 @@
+:root {
+    --vp-code-block-codesandbox-hover-bg: #333;
+}
+
+.vp-doc [class*='language-'] .codesandbox {
+    display: inline-block;
+    position: absolute;
+    top: 8px;
+    right: calc(40px * 1 + 8px);
+    z-index: 3;
+    border-radius: 4px;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    opacity: 0;
+    cursor: pointer;
+    background-position: 50%;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    transition: opacity 0.4s;
+}
+
+.vp-doc [class*='language-'] .codesandbox:hover,
+.vp-doc [class*='language-'] .codesandbox:focus {
+    background-color: var(--vp-code-block-codesandbox-hover-bg);
+}
+
+.vp-doc [class*='language-']:hover .codesandbox,
+.vp-doc [class*='language-']:focus .codesandbox {
+    opacity: 1;
+}
+
+
+
+.vp-doc [class*='language-'] .codesandbox svg.icon {
+    fill: var(--vp-code-block-icon-fill);
+}
