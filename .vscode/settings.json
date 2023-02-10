@@ -20,5 +20,8 @@
   },
   "[properties]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
   }
 }
