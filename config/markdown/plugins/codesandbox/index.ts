@@ -26,7 +26,15 @@ export const CodeSandBoxPlugin = (
   md: MarkdownIt,
   options: CodeSandBoxPluginOptions = {
     enable: true,
-    enableLangs: ["JS", "javascript", "react", "vue"],
+    enableLangs: [
+      "JS",
+      "javascript",
+      "react",
+      "vue",
+      "ts",
+      "TypeScript",
+      "jsx",
+    ],
     btnToolTips: "在 CodeSandBox 中打开",
   }
 ) => {
