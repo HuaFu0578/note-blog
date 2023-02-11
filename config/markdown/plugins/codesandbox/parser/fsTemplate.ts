@@ -5,7 +5,7 @@ import {
 import { readFileSync } from "fs";
 import path, { basename, isAbsolute, relative, resolve } from "path";
 
-import { readFileSyncRecursive } from "./utils";
+import { readFileSyncRecursive } from "../../../../../utils/readFileSyncRecursive";
 
 import type { TemplateInfo } from "./";
 export type EntryType = ReturnType<typeof getMainFile>;
