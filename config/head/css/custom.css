@@ -11,10 +11,12 @@
     --vp-code-block-icon-fill: mediumslateblue;
 }
 
-.VPDoc.VPDoc .aside {
-    max-width: var(--vp-layout-aside-max-width);
-}
+@media (min-width:1200px) {
+    .VPDoc.VPDoc .aside {
+        max-width: var(--vp-layout-aside-max-width);
+    }
 
-.VPDoc.has-aside .container .content-container {
-    max-width: var(--vp-layout-content-container-max-width);
+    .VPDoc.has-aside .container .content-container {
+        max-width: var(--vp-layout-content-container-max-width);
+    }
 }
