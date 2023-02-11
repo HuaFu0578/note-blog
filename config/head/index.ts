@@ -20,7 +20,11 @@ function getFiles() {
     js: {
       path: resolve(__dirname, "js"),
       resolver: (content: string, file: string) => {
-        return ["script", { type: "module" }, content];
+        return [
+          "script",
+          { type: "module", ...(!isProdEnv && { "data-vite-dev-id": file }) },
+          content,
+        ];
       },
     },
   };
