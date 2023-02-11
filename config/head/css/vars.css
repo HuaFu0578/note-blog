@@ -1,0 +1,24 @@
+/* 默认变量 */
+:root {
+    --vp-c-brand: mediumslateblue;
+    /* 布局最大宽度  默认 1440px */
+    --vp-layout-max-width: 100%;
+    /* 菜单栏宽度 默认 272px */
+    --vp-sidebar-width: 290px;
+    /* 内容区容器最大宽度 默认 688px */
+    --vp-layout-content-container-max-width: var(100% - 30px);
+    /* 布局右侧边栏最大宽度 默认 256px */
+    --vp-layout-aside-max-width: 350px;
+
+}
+
+/* 自定义变量 */
+:root {
+    /* 代码片段图标的主题色 */
+    --vp-code-block-icon-fill: mediumslateblue;
+}
+
+/* code block 代码块变量 */
+:root {
+    --vp-code-block-codesandbox-hover-bg: #333;
+}
