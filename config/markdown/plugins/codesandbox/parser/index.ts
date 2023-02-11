@@ -1,4 +1,5 @@
 import { getParameters } from "codesandbox/lib/api/define";
+import { resolve } from "path";
 import request from "sync-request";
 
 import customTemplates from "../customTemplates";
@@ -8,7 +9,6 @@ import { mergeQuery, toBasePath } from "./utils";
 import type { Query } from "./utils";
 import type { IModule } from "codesandbox-import-util-types";
 import type { CodeSandBoxFenceContext } from "../";
-
 const DEFAULT_CUSTOM_TEMPLATES = customTemplates;
 const PLUGIN_ONLY_QUERY_PARAMS = ["overrideEntry", "entry", "style"];
 
@@ -27,6 +27,8 @@ interface CodeSandBoxMetaOptions {
   customTemplates?: Record<string, TemplateInfo>;
   autoDeploy?: boolean;
   query?: Query;
+  /** 自定义模版根路径 */
+  customTemplateRootPath?: string;
 }
 
 export interface CodeSandBoxParserType {
@@ -46,10 +48,10 @@ export const codeSandBoxParser = (
     customTemplates: optCustomTemplates = {} as any,
     query: baseQuery,
     autoDeploy = false,
+    customTemplateRootPath = resolve(__dirname, "../templates"),
   }: CodeSandBoxMetaOptions = {}
 ): CodeSandBoxParserType | null => {
   if (!meta) return null;
-  const file = ctx?.env?.path;
   const content = ctx.tokens[ctx.idx]?.content;
   const templatesCache = new Map<string, TemplateInfo>();
   const customTemplates = {
@@ -62,7 +64,7 @@ export const codeSandBoxParser = (
     templateID,
     templatesCache,
     customTemplates,
-    file
+    customTemplateRootPath
   );
 
   const query: URLSearchParams = mergeQuery(

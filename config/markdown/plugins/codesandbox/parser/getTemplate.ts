@@ -41,7 +41,7 @@ function getFilePath(mappings: any, shortid: string): string {
 function getTemplate(
   templateID: string,
   customTemplates: Record<string, TemplateInfo>,
-  file?: string
+  rootPath?: string
 ): TemplateInfo {
   if (customTemplates[templateID]) {
     const baseTemplate = getTemplate(
@@ -64,7 +64,7 @@ function getTemplate(
     }
 
     const directoryPath = templateID.slice("file:".length);
-    template = fsTemplate(directoryPath, file ? file : process.cwd());
+    template = fsTemplate(directoryPath, rootPath ? rootPath : process.cwd());
   } else {
     try {
       const response = request(
@@ -107,12 +107,12 @@ export default function getTemplateFromCache(
   templateID: string,
   templatesCache: Map<string, TemplateInfo>,
   customTemplates: Record<string, TemplateInfo>,
-  file?: string
+  customTemplateRootPath?: string
 ) {
   if (!templatesCache.has(templateID)) {
     templatesCache.set(
       templateID,
-      getTemplate(templateID, customTemplates, file) as any
+      getTemplate(templateID, customTemplates, customTemplateRootPath) as any
     );
   }
 

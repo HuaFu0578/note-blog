@@ -2,12 +2,12 @@ import {
   getMainFile,
   getTemplate,
 } from "codesandbox-import-utils/lib/create-sandbox/templates";
-import { readdirSync, readFileSync } from "fs";
-import minimatch from "minimatch";
+import { readFileSync } from "fs";
 import path, { basename, isAbsolute, relative, resolve } from "path";
 
-import type { TemplateInfo } from "./";
+import { readFileSyncRecursive } from "./utils";
 
+import type { TemplateInfo } from "./";
 export type EntryType = ReturnType<typeof getMainFile>;
 
 function fsTemplate(directoryPath: string, rootPath: string): TemplateInfo {
@@ -22,6 +22,7 @@ function fsTemplate(directoryPath: string, rootPath: string): TemplateInfo {
   } else {
     absDirectoryPath = resolve(rootPath, directoryPath);
   }
+
   const ignoreGlobs = [
     ".gitignore",
     "*.log",
@@ -33,9 +34,8 @@ function fsTemplate(directoryPath: string, rootPath: string): TemplateInfo {
     ".pnp.js",
     ".cache",
   ];
-  const filePaths = readdirSync(absDirectoryPath).filter(
-    (it) => !ignoreGlobs.some((p) => minimatch(it, p))
-  );
+
+  const filePaths = readFileSyncRecursive(absDirectoryPath, { ignoreGlobs });
 
   const files: TemplateInfo["files"] = {};
 
@@ -43,10 +43,9 @@ function fsTemplate(directoryPath: string, rootPath: string): TemplateInfo {
     const relativePath = relative(absDirectoryPath, filePath);
     // CodeSandbox expects posix path
     const posixRelativePath = toPosixPath(relativePath);
-
     files[posixRelativePath] = {
       isBinary: false,
-      content: readFileSync(filePath, "utf8"),
+      content: readFileSync(filePath, { encoding: "utf8" }),
     };
   }
 
