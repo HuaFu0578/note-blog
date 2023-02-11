@@ -1,3 +1,1 @@
-console.log("index.js allalalaalal");
-
-export default {};
+import "./src/index";

@@ -46,7 +46,8 @@ function getTemplate(
   if (customTemplates[templateID]) {
     const baseTemplate = getTemplate(
       customTemplates[templateID].extends!,
-      customTemplates
+      customTemplates,
+      rootPath
     );
 
     const template = mergeTemplates(baseTemplate, customTemplates[templateID]);
@@ -56,7 +57,7 @@ function getTemplate(
 
   let template: TemplateInfo;
 
-  if (templateID.startsWith("file:")) {
+  if (templateID?.startsWith("file:")) {
     if (typeof window !== "undefined") {
       throw new Error(
         '"file:" template is not supported in browser environment!'
