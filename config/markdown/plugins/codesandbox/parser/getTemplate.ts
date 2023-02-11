@@ -1,7 +1,7 @@
-import type { INormalizedModules } from "codesandbox-import-util-types";
 import type { TemplateInfo } from "./";
-import fsTemplate from "./fsTemplate";
 import request from "sync-request";
+
+import fsTemplate from "./fsTemplate";
 
 function mergeTemplates(
   baseTemplate: TemplateInfo,
@@ -42,22 +42,19 @@ function getTemplate(
   templateID: string,
   customTemplates: Record<string, TemplateInfo>,
   file?: string
-): Record<string, any> {
+): TemplateInfo {
   if (customTemplates[templateID]) {
     const baseTemplate = getTemplate(
-      customTemplates[templateID].extends,
+      customTemplates[templateID].extends!,
       customTemplates
     );
 
-    const template = mergeTemplates(
-      baseTemplate as any,
-      customTemplates[templateID]
-    );
+    const template = mergeTemplates(baseTemplate, customTemplates[templateID]);
 
     return template;
   }
 
-  let template: Record<string, any>;
+  let template: TemplateInfo;
 
   if (templateID.startsWith("file:")) {
     if (typeof window !== "undefined") {
@@ -92,7 +89,7 @@ function getTemplate(
     });
 
     // Construct files mappings
-    const files: INormalizedModules = {};
+    const files: TemplateInfo["files"] = {};
 
     (template.modules || []).forEach((file: any) => {
       const path = getFilePath(mappings, file.shortid);

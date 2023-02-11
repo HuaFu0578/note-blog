@@ -1,30 +1,25 @@
 import { getParameters } from "codesandbox/lib/api/define";
-import getTemplate from "./getTemplate";
-
-import type { IModule, ITemplate } from "codesandbox-import-util-types";
-import { mergeQuery, toBasePath, type Query } from "./utils";
-import type { CodeSandBoxFenceContext } from "..";
 import request from "sync-request";
 
-export type TemplateIDKeys = ITemplate | "react" | "react-component";
+import customTemplates from "../customTemplates";
+import getTemplate from "./getTemplate";
+import { mergeQuery, toBasePath } from "./utils";
 
-const DEFAULT_CUSTOM_TEMPLATES: Partial<Record<TemplateIDKeys, TemplateInfo>> =
-  {
-    react: {
-      extends: "new",
-    },
-    "react-component": {
-      extends: "new",
-      entry: "src/App.js",
-    },
-  };
+import type { Query } from "./utils";
+import type { IModule } from "codesandbox-import-util-types";
+import type { CodeSandBoxFenceContext } from "../";
+
+const DEFAULT_CUSTOM_TEMPLATES = customTemplates;
 const PLUGIN_ONLY_QUERY_PARAMS = ["overrideEntry", "entry", "style"];
 
 export interface TemplateInfo {
-  extends: string;
+  extends?: string;
   entry?: string;
   query?: string | { [key: string]: string } | URLSearchParams;
   files?: { [filePath: string]: IModule };
+  title?: string;
+  directories?: any;
+  modules?: any;
 }
 
 interface CodeSandBoxMetaOptions {

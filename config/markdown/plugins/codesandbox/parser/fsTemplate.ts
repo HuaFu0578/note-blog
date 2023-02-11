@@ -6,9 +6,11 @@ import { readdirSync, readFileSync } from "fs";
 import minimatch from "minimatch";
 import path, { basename, isAbsolute, relative, resolve } from "path";
 
-import type { INormalizedModules } from "codesandbox-import-util-types";
+import type { TemplateInfo } from "./";
 
-function fsTemplate(directoryPath: string, rootPath: string) {
+export type EntryType = ReturnType<typeof getMainFile>;
+
+function fsTemplate(directoryPath: string, rootPath: string): TemplateInfo {
   let absDirectoryPath;
 
   if (isAbsolute(directoryPath)) {
@@ -35,7 +37,7 @@ function fsTemplate(directoryPath: string, rootPath: string) {
     (it) => !ignoreGlobs.some((p) => minimatch(it, p))
   );
 
-  const files: INormalizedModules = {};
+  const files: TemplateInfo["files"] = {};
 
   for (const filePath of filePaths) {
     const relativePath = relative(absDirectoryPath, filePath);
