@@ -1,4 +1,5 @@
 import type { DefaultTheme } from "vitepress";
+const pkg = require("../../../package.json");
 
 export default [
   {
@@ -9,4 +10,5 @@ export default [
       { text: "生活", link: "/life/" },
     ],
   },
+  { text: pkg.version, link: "" },
 ] as DefaultTheme.NavItem[];
