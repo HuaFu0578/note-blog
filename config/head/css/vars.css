@@ -1,6 +1,10 @@
 /* 默认变量 */
 :root {
-    --vp-c-brand: mediumslateblue;
+    --vp-c-brand: var(--vp-c-blue);
+    --vp-c-brand-light: var(--vp-c-blue-light);
+    --vp-c-brand-lighter: var(--vp-c-blue-lighter);
+    --vp-c-brand-dark: var(--vp-c-blue-dark);
+    --vp-c-brand-darker: var(--vp-c-blue-darker);
     /* 布局最大宽度  默认 1440px */
     --vp-layout-max-width: 100%;
     /* 菜单栏宽度 默认 272px */
@@ -14,6 +18,11 @@
 
 /* 自定义变量 */
 :root {
+    --vp-c-blue: #7c68ee;
+    --vp-c-blue-light: #5443d0;
+    --vp-c-blue-lighter: #837ae6;
+    --vp-c-blue-dark: #5434f4;
+    --vp-c-blue-darker: #4316f3;
     /* 代码片段图标的主题色 */
     --vp-code-block-icon-fill: mediumslateblue;
 }
