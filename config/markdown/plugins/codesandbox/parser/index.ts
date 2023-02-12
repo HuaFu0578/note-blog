@@ -47,7 +47,7 @@ export const codeSandBoxParser = (
     mode = "meta",
     customTemplates: optCustomTemplates = {} as any,
     query: baseQuery,
-    autoDeploy = false,
+    autoDeploy = true,
     customTemplateRootPath = resolve(__dirname, "../templates"),
   }: CodeSandBoxMetaOptions = {}
 ): CodeSandBoxParserType | null => {
