@@ -89,7 +89,7 @@ export const CodeOperatorAreaPlugin = (
     const matchedOperators = align<CodeOperatorArea.Extension | undefined>(
       extensions
     )?.filter(([it]) => {
-      return it?.activeLangs?.some((reg) => new RegExp(reg).test(lang));
+      return it?.activeLangs?.some((reg) => new RegExp(reg, "i").test(lang));
     });
     if (!matchedOperators?.length) return rawCode;
     const [tokens, idx, opt, env, self] = args;
