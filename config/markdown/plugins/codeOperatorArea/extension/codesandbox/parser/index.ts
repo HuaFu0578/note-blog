@@ -42,7 +42,7 @@ export interface CodeSandBoxParserType {
  */
 export const codeSandBoxParser = (
   meta: string,
-  ctx: CodeSandBoxFenceContext,
+  ctx: CodeSandBoxFenceContext | null,
   {
     mode = "meta",
     customTemplates: optCustomTemplates = {} as any,
@@ -52,7 +52,7 @@ export const codeSandBoxParser = (
   }: CodeSandBoxMetaOptions = {}
 ): CodeSandBoxParserType | null => {
   if (!meta) return null;
-  const content = ctx.tokens[ctx.idx]?.content;
+  const content = ctx?.tokens?.[ctx?.idx]?.content;
   const templatesCache = new Map<string, TemplateInfo>();
   const customTemplates = {
     ...DEFAULT_CUSTOM_TEMPLATES,
@@ -102,7 +102,7 @@ export const codeSandBoxParser = (
 
   let entryFileContent = template.files[entryPath!].content;
   if (!overrideEntry) {
-    entryFileContent = content;
+    entryFileContent = content ?? entryFileContent;
   } else if (overrideEntry !== "false") {
     const [overrideRangeStart, overrideRangeEnd] = overrideEntry.split("-");
 
