@@ -1,4 +1,4 @@
-import type { TemplateInfo } from "./";
+import type { TemplateInfo } from ".";
 import request from "sync-request";
 
 import fsTemplate from "./fsTemplate";

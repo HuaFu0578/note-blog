@@ -8,7 +8,7 @@ import { mergeQuery, toBasePath } from "./utils";
 
 import type { Query } from "./utils";
 import type { IModule } from "codesandbox-import-util-types";
-import type { CodeSandBoxFenceContext } from "../";
+import type { CodeSandBoxFenceContext } from "../../..";
 const DEFAULT_CUSTOM_TEMPLATES = customTemplates;
 const PLUGIN_ONLY_QUERY_PARAMS = ["overrideEntry", "entry", "style"];
 

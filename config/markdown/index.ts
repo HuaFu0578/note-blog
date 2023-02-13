@@ -1,6 +1,8 @@
 import type { MarkdownOptions } from "vitepress";
-import { CodeSandBoxPlugin } from "./plugins/codesandbox";
+import { CodeOperatorAreaPlugin } from "./plugins/codeOperatorArea";
+import { CodeSandBoxExtension } from "./plugins/codeOperatorArea/extension/codesandbox";
 
+import type { CodeOperatorArea } from "./plugins/codeOperatorArea";
 export default {
   theme: "material-theme-palenight",
   lineNumbers: true,
@@ -10,6 +12,8 @@ export default {
   linkify: true,
   typographer: true,
   config(md) {
-    md.use(CodeSandBoxPlugin);
+    md.use(CodeOperatorAreaPlugin, {
+      extensions: [CodeSandBoxExtension],
+    } as CodeOperatorArea.Options);
   },
 } as MarkdownOptions;

@@ -5,9 +5,9 @@ import {
 import { readFileSync } from "fs";
 import path, { basename, isAbsolute, relative, resolve } from "path";
 
-import { readDirSyncRecursive } from "../../../../../utils/readDirSyncRecursive";
+import { readDirSyncRecursive } from "../../../../../../../utils/readDirSyncRecursive";
 
-import type { TemplateInfo } from "./";
+import type { TemplateInfo } from ".";
 export type EntryType = ReturnType<typeof getMainFile>;
 
 function fsTemplate(directoryPath: string, rootPath: string): TemplateInfo {
