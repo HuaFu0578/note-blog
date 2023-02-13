@@ -1,0 +1,66 @@
+.vp-doc [class*='language-'] .more {
+    display: inline-flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: absolute;
+    top: 8px;
+    right: calc(40px * 1 + 8px);
+    z-index: 3;
+    min-width: 40px;
+    height: 40px;
+    opacity: 0;
+    cursor: pointer;
+    background-position: 50%;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    transition: all 0.4s;
+}
+
+.vp-doc [class*='language-'] .more .icon {
+    width: 40px;
+    height: 100%;
+    padding: 8px;
+}
+
+.vp-doc [class*='language-']:hover .more,
+.vp-doc [class*='language-']:focus .more {
+    opacity: 1;
+}
+
+.vp-doc [class*='language-'] .more svg {
+    fill: var(--vp-code-block-icon-fill);
+}
+
+
+.vp-doc [class*='language-'] .more .extension {
+    width: 0;
+    height: 100%;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.4s;
+    display: inline-flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+.vp-doc [class*='language-'] .more:hover .extension,
+.vp-doc [class*='language-'] .more:focus .extension {
+    opacity: 1;
+    width: var(--vp-code-block-coa-more-extension-width);
+}
+
+.vp-doc [class*='language-'] .more .extension .item {
+    width: var(--vp-code-block-coa-more-extension-item-width);
+    height: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vp-doc [class*='language-'] .more .extension .item:hover,
+.vp-doc [class*='language-'] .more .extension .item:focus {
+    background-color: var(--vp-code-block-hover-bg);
+    border-radius: 4px;
+
+}

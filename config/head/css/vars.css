@@ -23,11 +23,17 @@
     --vp-c-blue-lighter: #837ae6;
     --vp-c-blue-dark: #5434f4;
     --vp-c-blue-darker: #4316f3;
-    /* 代码片段图标的主题色 */
-    --vp-code-block-icon-fill: mediumslateblue;
+
 }
 
 /* code block 代码块变量 */
 :root {
-    --vp-code-block-codesandbox-hover-bg: #333;
+    /* 代码片段图标的主题色 */
+    --vp-code-block-icon-fill: mediumslateblue;
+    /* 代码片段 hover 的背景色 */
+    --vp-code-block-hover-bg: #333;
+    /* 代码片段 code-operator-area 更多扩展的宽度 */
+    --vp-code-block-coa-more-extension-width: auto;
+    /* 代码片段 code-operator-area 每个扩展的宽度 */
+    --vp-code-block-coa-more-extension-item-width: 40px;
 }
