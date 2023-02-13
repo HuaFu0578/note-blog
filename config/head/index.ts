@@ -1,10 +1,10 @@
-import { readdirSync, readFileSync } from "fs";
+import { readFileSync } from "fs";
 import { resolve } from "path";
 
 import { isProdEnv } from "../../utils/env";
+import readDirSyncRecursive from "../../utils/readDirSyncRecursive";
 
 import type { HeadConfig } from "vitepress";
-
 function getFiles() {
   const dirsMap = {
     css: {
@@ -30,7 +30,7 @@ function getFiles() {
   };
 
   return Object.entries(dirsMap).reduce((arr, [key, config]) => {
-    const files = readdirSync(config.path, { encoding: "utf-8" });
+    const files = readDirSyncRecursive(config.path);
     const result = files?.map((filename) => {
       const file = resolve(config.path, filename);
       const content = readFileSync(file, { encoding: "utf-8" });
