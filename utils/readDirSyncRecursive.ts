@@ -3,7 +3,7 @@ import minimatch from "minimatch";
 import { resolve } from "path";
 
 /** 递归同步读取目录文件 */
-export function readFileSyncRecursive(
+export function readDirSyncRecursive(
   dirPath: string,
   options: { ignoreGlobs?: string[]; withDirs?: boolean } = {}
 ) {
@@ -29,4 +29,4 @@ export function readFileSyncRecursive(
   return Array.from(new Set(store));
 }
 
-export default readFileSyncRecursive;
+export default readDirSyncRecursive;
