@@ -1,4 +1,4 @@
-import { codeSandBoxParser } from "../config/markdown/plugins/codeOperatorArea/extension/codesandbox/parser";
+import { codeSandBoxParser } from "../config/markdown/plugins/CodeOperatorArea/extension/codesandbox/parser";
 
 /** 获取 codesandbox 打开链接 */
 export default (
