@@ -1,6 +1,7 @@
 import type { MarkdownOptions } from "vitepress";
 import { CodeOperatorAreaPlugin } from "./plugins/CodeOperatorArea";
 import { CodeSandBoxExtension } from "./plugins/CodeOperatorArea/extension/codesandbox";
+import { MermaidPlugin } from "./plugins/MermaidPlugin";
 
 import type { CodeOperatorArea } from "./plugins/CodeOperatorArea";
 export default {
@@ -14,6 +15,6 @@ export default {
   config(md) {
     md.use(CodeOperatorAreaPlugin, {
       extensions: [CodeSandBoxExtension],
-    } as CodeOperatorArea.Options);
+    } as CodeOperatorArea.Options).use(MermaidPlugin);
   },
 } as MarkdownOptions;
