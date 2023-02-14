@@ -1,13 +1,13 @@
-import type { Theme } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 
-import theme from "../../theme";
+import enhance from "@/config/enhance";
 
+import type { Theme } from "vitepress";
 export default {
   ...DefaultTheme,
-  ...theme,
+  ...enhance,
   enhanceApp(ctx) {
     DefaultTheme.enhanceApp(ctx);
-    theme?.enhanceApp?.(ctx);
+    enhance?.enhanceApp?.(ctx);
   },
 } as Theme;
