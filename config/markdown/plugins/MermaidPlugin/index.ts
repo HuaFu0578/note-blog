@@ -20,7 +20,8 @@ export const MermaidPlugin = (
     if (!mermaidReg.test(lang)) return rawCode;
     const [tokens, idx] = args;
     const content = tokens?.[idx]?.content;
-    const MermaidVueComponent = `<MermaidPlugin>${content}</MermaidPlugin>`;
+    const salt = Math.random().toString(36).slice(7);
+    const MermaidVueComponent = `<Mermaid id='mermaid-${salt}' graph='${content}'/>`;
     root.after(MermaidVueComponent);
     const finalCode = root.parent().html() ?? "";
     return finalCode;
