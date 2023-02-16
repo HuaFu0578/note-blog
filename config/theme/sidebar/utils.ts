@@ -70,7 +70,7 @@ export const getPagesRoutesRecursive = (
 /** 将文件转路由 */
 export const fileToRoutes = (files: FileDirent[]) => {
   const routes = Array.from(files)
-    .sort((a, b) => a[1].name.localeCompare(b[1].name))
+    .sort((a, b) => a[1].name.localeCompare(b[1].name, "zh"))
     .reduce((arr, [file, dirent]) => {
       arr.push({ text: dirent.name, link: file });
       return arr;
