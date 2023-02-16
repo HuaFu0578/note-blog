@@ -13,5 +13,3 @@ export default [
     items: getRouteFromPath("./knowledge/backend"),
   },
 ] as DefaultTheme.Sidebar;
-
-console.log(getRouteFromPath("./knowledge/frontend"));
