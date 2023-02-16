@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pnpm build
+pnpm build || exit 1
 
 version_tag="${1:-patch}"
 
