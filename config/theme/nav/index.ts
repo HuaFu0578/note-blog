@@ -5,9 +5,10 @@ export default [
   {
     text: "模块分类",
     items: [
-      { text: "知识库", link: "/knowledge/" },
+      { text: "知识总结", link: "/knowledge/" },
       { text: "面试专题", link: "/knowledge/interview/" },
-      { text: "生活", link: "/life/" },
+      { text: "品茗生活", link: "/life/" },
+      { text: "开卷有益", link: "/books/" },
     ],
   },
   { text: pkg.version, link: "" },
