@@ -1,0 +1,3 @@
+diff.submodule='log'
+submodule.recurse=true
+push.recurseSubmodules='on-demand'
