@@ -1,0 +1,4 @@
+[submodule "modules/algorithm-training"]
+	path = modules/algorithm-training
+	url = https://github.com/HuaFu0578/algorithm-training.git
+	branch = main
